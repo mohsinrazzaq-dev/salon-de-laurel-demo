@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon De Laurel | Online Booking Demo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #f8f5f1;
+            color: #24201d;
+            font-family: Inter, Arial, sans-serif
+        }
+
+        :root {
+            --gold: #b9965b;
+            --dark: #26211e;
+            --cream: #f8f5f1;
+            --line: #e8dfd5
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: auto;
+            padding: 0 22px
+        }
+
+        header {
+            background: rgba(255, 255, 255, .95);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 10
+        }
+
+        .nav {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .logo {
+            font-family: "Cormorant Garamond";
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 2px
+        }
+
+        .logo small {
+            display: block;
+            font: 9px Inter;
+            letter-spacing: 4px;
+            text-align: center;
+            color: var(--gold);
+            margin-top: -5px
+        }
+
+        nav a {
+            margin-left: 26px;
+            text-decoration: none;
+            color: #3d3733;
+            font-size: 13px
+        }
+
+        .navbtn {
+            background: var(--dark);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 2px
+        }
+
+        .hero {
+            min-height: 560px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, rgba(255, 250, 245, .98) 0%, rgba(255, 250, 245, .85) 48%, rgba(255, 250, 245, .12)), url('https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1500&q=85') center/cover
+        }
+
+        .hero-copy {
+            max-width: 570px;
+            padding: 80px 0
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            letter-spacing: 4px;
+            font-size: 11px;
+            font-weight: 600
+        }
+
+        .hero h1 {
+            font: 600 clamp(52px, 7vw, 82px) "Cormorant Garamond";
+            line-height: .88;
+            margin: 20px 0
+        }
+
+        .hero p {
+            color: #635b55;
+            line-height: 1.8;
+            max-width: 450px
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px
+        }
+
+        .btn {
+            border: 1px solid var(--dark);
+            padding: 14px 22px;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer
+        }
+
+        .btn.primary {
+            background: var(--dark);
+            color: #fff
+        }
+
+        .btn.light {
+            color: var(--dark);
+            background: white
+        }
+
+        section {
+            padding: 78px 0
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 40px
+        }
+
+        .section-head h2 {
+            font: 600 48px "Cormorant Garamond";
+            margin: 8px
+        }
+
+        .muted {
+            color: #776e67;
+            font-size: 14px
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--line);
+            padding: 28px
+        }
+
+        .card h3 {
+            font: 600 30px "Cormorant Garamond";
+            margin: 8px 0
+        }
+
+        .card p {
+            color: #746b64;
+            line-height: 1.7;
+            font-size: 13px
+        }
+
+        .tag {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase
+        }
+
+        .branch-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap
+        }
+
+        .mini {
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            background: #fff;
+            cursor: pointer;
+            font-size: 11px
+        }
+
+        .mini.gold {
+            background: #f4ecdf;
+            border-color: #e6d6bd
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .service {
+            background: #fff;
+            padding: 23px;
+            border: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            gap: 14px
+        }
+
+        .service h4 {
+            margin: 0 0 6px;
+            font-size: 14px
+        }
+
+        .service p {
+            margin: 0;
+            color: #8a817a;
+            font-size: 11px
+        }
+
+        .price {
+            font-weight: 600;
+            white-space: nowrap
+        }
+
+        .promo {
+            background: #26211e;
+            color: white;
+            padding: 42px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px
+        }
+
+        .promo h2 {
+            font: 600 42px "Cormorant Garamond";
+            margin: 0
+        }
+
+        .promo p {
+            color: #d8d0c8
+        }
+
+        .promo .btn {
+            border-color: #c8aa76;
+            color: white
+        }
+
+        .booking {
+            background: #fff;
+            border: 1px solid var(--line);
+            max-width: 850px;
+            margin: auto;
+            padding: 34px
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 35px
+        }
+
+        .step {
+            font-size: 11px;
+            color: #a29a92;
+            text-align: center;
+            flex: 1;
+            position: relative
+        }
+
+        .step.active {
+            color: #9c7b48;
+            font-weight: 600
+        }
+
+        .step span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #d9d0c7;
+            border-radius: 50%;
+            line-height: 29px;
+            margin: 0 auto 7px;
+            background: #fff
+        }
+
+        .step.active span {
+            background: #9c7b48;
+            color: #fff;
+            border-color: #9c7b48
+        }
+
+        .step:after {
+            content: "";
+            height: 1px;
+            background: #e5ddd4;
+            position: absolute;
+            top: 15px;
+            left: 65%;
+            right: -35%
+        }
+
+        .step:last-child:after {
+            display: none
+        }
+
+        .formstep {
+            display: none
+        }
+
+        .formstep.active {
+            display: block
+        }
+
+        .formstep h3 {
+            font: 600 34px "Cormorant Garamond";
+            margin: 0 0 8px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 13px
+        }
+
+        .choice {
+            border: 1px solid var(--line);
+            padding: 18px;
+            cursor: pointer;
+            background: #fff
+        }
+
+        .choice:hover,
+        .choice.selected {
+            border-color: #b9965b;
+            background: #fbf7f0
+        }
+
+        .choice strong {
+            display: block;
+            margin-bottom: 5px
+        }
+
+        .choice small {
+            color: #837a72
+        }
+
+        .times {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px
+        }
+
+        .input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--line);
+            font: 13px Inter;
+            background: #fff
+        }
+
+        .summary {
+            background: #f8f5f1;
+            padding: 20px;
+            margin-top: 18px
+        }
+
+        .summary div {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 0;
+            font-size: 13px
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px
+        }
+
+        .confirm {
+            text-align: center;
+            padding: 25px
+        }
+
+        .check {
+            font-size: 48px;
+            color: #a17f4c
+        }
+
+        .ref {
+            background: #f8f5f1;
+            padding: 15px;
+            margin: 18px 0;
+            font-weight: 600;
+            letter-spacing: 2px
+        }
+
+        footer {
+            background: #24201d;
+            color: white;
+            padding: 50px 0
+        }
+
+        .footergrid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 30px
+        }
+
+        .footergrid p {
+            color: #bdb5ae;
+            font-size: 12px;
+            line-height: 1.8
+        }
+
+        .footerlogo {
+            font: 700 34px "Cormorant Garamond";
+            letter-spacing: 2px
+        }
+
+        @media(max-width:760px) {
+            nav {
+                display: none
+            }
+
+            .hero {
+                min-height: 600px
+            }
+
+            .cards,
+            .services,
+            .grid,
+            .footergrid {
+                grid-template-columns: 1fr
+            }
+
+            .promo {
+                display: block
+            }
+
+            .times {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .booking {
+                padding: 20px
+            }
+
+            .steps {
+                overflow: hidden
+            }
+
+            .step {
+                min-width: 75px
+            }
+
+            .step:after {
+                display: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">SALON DE LAUREL<small>BEAUTY • HAIR • NAILS</small></div>
+            <nav><a href="#services">Services</a><a href="#promos">Promos</a><a href="#branches">Branches</a><a
+                    class="navbtn" href="#booking">Book Appointment</a></nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-copy">
+                    <div class="eyebrow">THE ART OF BEAUTY</div>
+                    <h1>Feel Beautiful.<br>Look Amazing.</h1>
+                    <p>Premium hair, beauty and nail experiences designed around you, now with effortless online booking
+                        across our two convenient locations.</p>
+                    <div class="buttons"><a class="btn primary" href="#booking">BOOK APPOINTMENT</a><a class="btn light"
+                            href="#promos">VIEW PROMOS</a></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="branches">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">VISIT US</div>
+                    <h2>Two Convenient Locations</h2>
+                    <div class="muted">Choose the branch that works best for you.</div>
+                </div>
+                <div class="cards">
+                    <div class="card"><span class="tag">MAKATI</span>
+                        <h3>San Lorenzo Place</h3>
+                        <p>2/F San Lorenzo Place Tower 4,<br>EDSA cor Chino Roces, Makati</p>
+                        <p>☎ (02) 8247 0585</p>
+                        <div class="branch-actions"><button class="mini gold"
+                                onclick="selectBranch('Makati');location='#booking'">Book at this Branch</button><button
+                                class="mini">View on Map</button></div>
+                    </div>
+                    <div class="card"><span class="tag">EVIA ALABANG</span>
+                        <h3>Evia Lifestyle Center</h3>
+                        <p>L/G, Everyday Building,<br>Evia Lifestyle Center, Evia Alabang</p>
+                        <p>☎ (02) 8556 4157</p>
+                        <div class="branch-actions"><button class="mini gold"
+                                onclick="selectBranch('Evia Alabang');location='#booking'">Book at this
+                                Branch</button><button class="mini">View on Map</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">OUR MENU</div>
+                    <h2>Signature Services</h2>
+                    <div class="muted">Choose your experience and we'll take care of the rest.</div>
+                </div>
+                <div class="services">
+                    <div class="service">
+                        <div>
+                            <h4>Signature Haircut</h4>
+                            <p>Cut & styling • 60 min</p>
+                        </div>
+                        <div class="price">₱650</div>
+                    </div>
+                    <div class="service">
+                        <div>
+                            <h4>Hair Color</h4>
+                            <p>Professional color • 120 min</p>
+                        </div>
+                        <div class="price">₱2,500</div>
+                    </div>
+                    <div class="service">
+                        <div>
+                            <h4>Hair Treatment</h4>
+                            <p>Repair & nourish • 90 min</p>
+                        </div>
+                        <div class="price">₱1,800</div>
+                    </div>
+                    <div class="service">
+                        <div>
+                            <h4>Rebonding</h4>
+                            <p>Smooth finish • 180 min</p>
+                        </div>
+                        <div class="price">₱3,500</div>
+                    </div>
+                    <div class="service">
+                        <div>
+                            <h4>Gel Manicure</h4>
+                            <p>Classic gel finish • 60 min</p>
+                        </div>
+                        <div class="price">₱750</div>
+                    </div>
+                    <div class="service">
+                        <div>
+                            <h4>Makeup</h4>
+                            <p>Event-ready glam • 75 min</p>
+                        </div>
+                        <div class="price">₱1,500</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="promos">
+            <div class="container">
+                <div class="promo">
+                    <div>
+                        <div class="eyebrow">LIMITED TIME</div>
+                        <h2>Holiday Beauty Offers</h2>
+                        <p>Hair Cut • Color • Treatment • Nails — curated packages for your next occasion.</p>
+                    </div><a class="btn" href="#booking">BOOK A PROMO</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="booking">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow">ONLINE APPOINTMENT</div>
+                    <h2>Book Your Visit</h2>
+                    <div class="muted">A quick, simple booking experience.</div>
+                </div>
+                <div class="booking">
+                    <div class="steps">
+                        <div class="step active" data-s="1"><span>1</span>Branch</div>
+                        <div class="step" data-s="2"><span>2</span>Service</div>
+                        <div class="step" data-s="3"><span>3</span>Date</div>
+                        <div class="step" data-s="4"><span>4</span>Time</div>
+                        <div class="step" data-s="5"><span>5</span>Details</div>
+                        <div class="step" data-s="6"><span>6</span>Confirm</div>
+                    </div>
+
+                    <div class="formstep active" id="s1">
+                        <h3>Where would you like to visit?</h3>
+                        <p class="muted">Select your preferred Salon De Laurel branch.</p>
+                        <div class="grid">
+                            <div class="choice" onclick="choose(this,'branch','Makati')">
+                                <strong>Makati</strong><small>San Lorenzo Place • (02) 8247 0585</small></div>
+                            <div class="choice" onclick="choose(this,'branch','Evia Alabang')"><strong>Evia
+                                    Alabang</strong><small>Evia Lifestyle Center • (02) 8556 4157</small></div>
+                        </div>
+                        <div class="actions"><span></span><button class="btn primary" onclick="next(2)">Continue
+                                →</button></div>
+                    </div>
+
+                    <div class="formstep" id="s2">
+                        <h3>Choose a service</h3>
+                        <p class="muted">Select the service you'd like to book.</p>
+                        <div class="grid">
+                            <div class="choice" onclick="choose(this,'service','Signature Haircut',650,60)">
+                                <strong>Signature Haircut</strong><small>60 min • ₱650</small></div>
+                            <div class="choice" onclick="choose(this,'service','Hair Color',2500,120)"><strong>Hair
+                                    Color</strong><small>120 min • ₱2,500</small></div>
+                            <div class="choice" onclick="choose(this,'service','Hair Treatment',1800,90)"><strong>Hair
+                                    Treatment</strong><small>90 min • ₱1,800</small></div>
+                            <div class="choice" onclick="choose(this,'service','Gel Manicure',750,60)"><strong>Gel
+                                    Manicure</strong><small>60 min • ₱750</small></div>
+                        </div>
+                        <div class="actions"><button class="btn" onclick="next(1)">← Back</button><button
+                                class="btn primary" onclick="next(3)">Continue →</button></div>
+                    </div>
+
+                    <div class="formstep" id="s3">
+                        <h3>Select a date</h3>
+                        <p class="muted">Choose a convenient future date.</p><input class="input" id="date" type="date"
+                            onchange="state.date=this.value">
+                        <div class="actions"><button class="btn" onclick="next(2)">← Back</button><button
+                                class="btn primary" onclick="next(4)">Continue →</button></div>
+                    </div>
+
+                    <div class="formstep" id="s4">
+                        <h3>Select a time</h3>
+                        <p class="muted">Available appointment slots.</p>
+                        <div class="times"><button class="choice" onclick="choose(this,'time','10:00 AM')">10:00
+                                AM</button><button class="choice" onclick="choose(this,'time','11:00 AM')">11:00
+                                AM</button><button class="choice" onclick="choose(this,'time','12:30 PM')">12:30
+                                PM</button><button class="choice" onclick="choose(this,'time','2:00 PM')">2:00
+                                PM</button><button class="choice" onclick="choose(this,'time','3:30 PM')">3:30
+                                PM</button><button class="choice" onclick="choose(this,'time','5:00 PM')">5:00
+                                PM</button></div>
+                        <div class="actions"><button class="btn" onclick="next(3)">← Back</button><button
+                                class="btn primary" onclick="next(5)">Continue →</button></div>
+                    </div>
+
+                    <div class="formstep" id="s5">
+                        <h3>Your details</h3>
+                        <p class="muted">We'll use these details to confirm your appointment.</p>
+                        <div class="grid"><input class="input" id="name" placeholder="Full Name"><input class="input"
+                                id="phone" placeholder="Mobile Number"><input class="input" id="email"
+                                placeholder="Email Address"><input class="input" id="notes"
+                                placeholder="Optional Notes"></div>
+                        <div class="actions"><button class="btn" onclick="next(4)">← Back</button><button
+                                class="btn primary" onclick="review()">Review Booking →</button></div>
+                    </div>
+
+                    <div class="formstep" id="s6">
+                        <h3>Review your appointment</h3>
+                        <div class="summary" id="summary"></div>
+                        <div class="actions"><button class="btn" onclick="next(5)">← Back</button><button
+                                class="btn primary" onclick="confirmBooking()">CONFIRM APPOINTMENT</button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footergrid">
+            <div>
+                <div class="footerlogo">SALON DE LAUREL</div>
+                <p>Premium beauty experiences with effortless online booking across Makati and Evia Alabang.</p>
+            </div>
+            <div><strong>MAKATI</strong>
+                <p>San Lorenzo Place Tower 4<br>(02) 8247 0585</p>
+            </div>
+            <div><strong>EVIA ALABANG</strong>
+                <p>Evia Lifestyle Center<br>(02) 8556 4157</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let state = { branch: '', service: '', price: 0, duration: 0, date: '', time: '' };
+        function selectBranch(v) { state.branch = v; document.querySelectorAll('#s1 .choice').forEach(x => x.classList.remove('selected'));[...document.querySelectorAll('#s1 .choice')].find(x => x.innerText.includes(v))?.classList.add('selected') }
+        function choose(el, key, val, price, duration) { el.parentElement.querySelectorAll('.choice').forEach(x => x.classList.remove('selected')); el.classList.add('selected'); state[key] = val; if (price) { state.price = price; state.duration = duration } }
+        function next(n) { document.querySelectorAll('.formstep').forEach(x => x.classList.remove('active')); document.getElementById('s' + n).classList.add('active'); document.querySelectorAll('.step').forEach(x => x.classList.toggle('active', +x.dataset.s <= n)); document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' }) }
+        function review() { if (!document.getElementById('name').value || !document.getElementById('phone').value || !state.branch || !state.service || !state.date || !state.time) { alert('Please complete all required booking details.'); return } let d = new Date(state.date + 'T00:00:00'); let ds = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); document.getElementById('summary').innerHTML = `<div><span>Branch</span><strong>${state.branch}</strong></div><div><span>Service</span><strong>${state.service}</strong></div><div><span>Date</span><strong>${ds}</strong></div><div><span>Time</span><strong>${state.time}</strong></div><div><span>Duration</span><strong>${state.duration} minutes</strong></div><div><span>Price</span><strong>₱${state.price.toLocaleString()}</strong></div><div><span>Guest</span><strong>${document.getElementById('name').value}</strong></div>`; next(6) }
+        function confirmBooking() { let ref = 'SDL-' + Math.random().toString(36).substring(2, 8).toUpperCase(); localStorage.setItem('salonDeLaurelBooking', JSON.stringify({ ...state, ref, name: document.getElementById('name').value, phone: document.getElementById('phone').value })); document.querySelector('#s6').innerHTML = `<div class="confirm"><div class="check">✓</div><h3>Appointment Confirmed!</h3><p class="muted">Thank you, ${document.getElementById('name').value}. Your Salon De Laurel appointment is booked.</p><div class="ref">${ref}</div><div class="summary"><div><span>Branch</span><strong>${state.branch}</strong></div><div><span>Service</span><strong>${state.service}</strong></div><div><span>Date</span><strong>${new Date(state.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</strong></div><div><span>Time</span><strong>${state.time}</strong></div></div><button class="btn primary" onclick="location.reload()">BOOK AGAIN</button></div>` }
+        let today = new Date(); today.setDate(today.getDate() + 1); document.getElementById('date').min = today.toISOString().split('T')[0];
+    </script>
+</body>
+
+</html>
